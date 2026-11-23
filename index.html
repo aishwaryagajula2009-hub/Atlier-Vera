@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATELIER VERA | Blush & Lavender Luxury Ready-to-Wear</title>
+
+    <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Custom Theme Configuration: Soft Rose-Blush & Royal Lavender Palette -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        blush: {
+                            50: '#FDF8FA',   // Background Primary: soft rose-blush ivory
+                            100: '#F6EDF3',  // Background Secondary / Cards: misty lavender-pink
+                            200: '#EEDCE8',
+                            300: '#E8D5E0',  // Rose-gold borders
+                        },
+                        plum: {
+                            950: '#2D1B2E',  // Text Primary: deep velvet plum-charcoal
+                            800: '#462C48',
+                            600: '#6D546E',  // Text Secondary: muted mauve-plum
+                            400: '#9B7E9D',
+                        },
+                        roseberry: {
+                            400: '#D97BA5',
+                            500: '#B85D88',  // Accent Primary: dusty rose-berry
+                            600: '#9E4870',
+                        },
+                        lavender: {
+                            400: '#A588D6',
+                            500: '#8B5FBF',  // Accent Secondary: soft royal lavender
+                            600: '#7448A8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Refined Blush & Lavender Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FDF8FA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D8BFD0;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B85D88;
+        }
+
+        /* Editorial Gradient Signature */
+        .bg-editorial-gradient {
+            background: linear-gradient(135deg, #D97BA5 0%, #8E6BC4 100%);
+        }
+        .bg-editorial-gradient-hover:hover {
+            background: linear-gradient(135deg, #C76893 0%, #7B57B3 100%);
+        }
+
+        /* Tactile Button Micro-Interactions & Ripple Effect */
+        .btn-tactile {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, background-color 0.22s ease, border-color 0.22s ease;
+        }
+        .btn-tactile:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px -6px rgba(184, 93, 136, 0.32), 0 4px 12px -2px rgba(139, 95, 191, 0.18);
+        }
+        .btn-tactile:active {
+            transform: translateY(0px) scale(0.96);
+        }
+
+        .ripple-circle {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleExpand 0.65s ease-out forwards;
+            background: rgba(255, 255, 255, 0.45);
+            pointer-events: none;
+        }
+        @keyframes rippleExpand {
+            to {
+                transform: scale(3.5);
+                opacity: 0;
+            }
+        }
+
+        /* Badge & Heart Pop Keyframes */
+        @keyframes heartPop {
+            0% { transform: scale(1); }
+            45% { transform: scale(1.38); }
+            75% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+        .animate-heart-pop {
+            animation: heartPop 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        @keyframes badgeBounce {
+            0%, 100% { transform: scale(1); }
+            40% { transform: scale(1.35); }
+            70% { transform: scale(0.92); }
+        }
+        .animate-badge-bounce {
+            animation: badgeBounce 0.45s ease;
+        }
+
+        /* Keep each image steady without swapping or crossfading on hover */
+        .steady-photo {
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .group:hover .steady-photo {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="bg-blush-50 text-plum-950 font-sans antialiased selection:bg-roseberry-500 selection:text-white overflow-x-hidden">
+
+    <!-- =====================================================================
+         1. TOP PROMOTIONAL ANNOUNCEMENT BAR & NAVIGATION HEADER
+         ===================================================================== -->
+    <div class="bg-plum-950 text-blush-50 text-xs py-2.5 px-4 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center sm:justify-between gap-2 text-center">
+            <span class="hidden sm:inline tracking-[0.18em] uppercase text-[10px] text-blush-200/80">Complimentary Express Courier Over $250</span>
+            <div class="flex items-center gap-2.5">
+                <span class="tracking-wide">Blush & Lavender Private Event — <strong>20% Off</strong> with code</span>
+                <button 
+                    id="top-promo-btn"
+                    onclick="copyPromoCode('VERA20', this)" 
+                    class="btn-tactile inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-editorial-gradient text-white font-semibold tracking-widest uppercase text-[11px] cursor-pointer shadow-sm"
+                    title="Click to copy promo code"
+                >
+                    <span id="top-promo-label">VERA20</span>
+                    <i data-lucide="copy" class="w-3 h-3"></i>
+                </button>
+            </div>
+            <span class="hidden lg:inline tracking-[0.18em] uppercase text-[10px] text-blush-200/80">Milan • Paris • New York</span>
+        </div>
+    </div>
+
+    <!-- Sticky Editorial Header -->
+    <header class="sticky top-0 z-40 bg-blush-50/92 backdrop-blur-lg border-b border-blush-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="h-20 flex items-center justify-between gap-4">
+                
+                <!-- Left: Mobile Menu Button + Desktop Navigation -->
+                <div class="flex items-center gap-6 flex-1">
+                    <button onclick="toggleMobileMenu()" class="btn-tactile lg:hidden p-2 rounded-full text-plum-950 hover:bg-blush-100" aria-label="Open Menu">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+
+                    <nav class="hidden lg:flex items-center gap-6 text-xs uppercase tracking-[0.16em] font-semibold text-plum-800">
+                        <a href="#collections" class="hover:text-roseberry-500 transition-colors">Collections</a>
+                        <a href="#categories" class="hover:text-roseberry-500 transition-colors">Categories</a>
+                        <a href="#offers" class="hover:text-roseberry-500 transition-colors">Private Offers</a>
+                        <a href="#catalog" onclick="resetAllFilters()" class="hover:text-roseberry-500 transition-colors">Ready-to-Wear</a>
+                    </nav>
+                </div>
+
+                <!-- Center: Brand Wordmark -->
+                <a href="#" onclick="resetAllFilters()" class="text-center flex-shrink-0 group">
+                    <span class="font-serif text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-[0.18em] text-plum-950 uppercase block leading-none group-hover:text-roseberry-500 transition-colors">
+                        ATELIER VERA
+                    </span>
+                    <span class="text-[9px] uppercase tracking-[0.35em] text-plum-600 block mt-1">
+                        Maison de Couture
+                    </span>
+                </a>
+
+                <!-- Right: Live Search, Wishlist Drawer/Filter, Shopping Bag Trigger -->
+                <div class="flex items-center justify-end gap-2 sm:gap-3 flex-1">
+                    <!-- Desktop Live Search -->
+                    <div class="hidden md:flex items-center relative w-44 xl:w-56">
+                        <i data-lucide="search" class="w-4 h-4 text-plum-600 absolute left-3.5 pointer-events-none"></i>
+                        <input 
+                            id="desktop-search" 
+                            type="text" 
+                            oninput="handleSearch(this.value)" 
+                            placeholder="Search silk, cashmere..." 
+                            class="w-full pl-9 pr-7 py-1.5 rounded-full bg-blush-100 border border-blush-300 text-xs text-plum-950 placeholder-plum-400 focus:outline-none focus:border-lavender-500 focus:bg-white transition-all"
+                        >
+                        <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute right-2.5 text-plum-600 hover:text-plum-950" aria-label="Clear Search">
+                            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+
+                    <!-- Mobile Search Toggle -->
+                    <button onclick="toggleMobileSearch()" class="btn-tactile md:hidden p-2 rounded-full text-plum-950 hover:bg-blush-100" aria-label="Search">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </button>
+
+                    <!-- Wishlist Modal Trigger Button -->
+                    <button onclick="openWishlistModal()" id="wishlist-nav-btn" class="btn-tactile relative px-3 py-2 rounded-full bg-blush-100 hover:bg-blush-200 border border-blush-300 text-plum-950 transition-all flex items-center gap-1.5" aria-label="Open Saved Wishlist">
+                        <i data-lucide="heart" class="w-4 h-4 text-roseberry-500 fill-current"></i>
+                        <span class="hidden sm:inline text-xs font-semibold">Wishlist</span>
+                        <span id="wishlist-badge" class="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-plum-950 text-blush-50 text-[10px] font-bold">2</span>
+                    </button>
+
+                    <!-- Shopping Bag Drawer Trigger -->
+                    <button onclick="openBagDrawer()" class="btn-tactile relative px-3.5 py-2 rounded-full bg-editorial-gradient text-white transition-all flex items-center gap-1.5 shadow-sm" aria-label="Open Shopping Bag">
+                        <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                        <span class="hidden sm:inline text-xs font-semibold uppercase tracking-wider">Bag</span>
+                        <span id="bag-badge" class="inline-flex items-center justify-center min-w-[20px] h-[20px] px-1.5 rounded-full bg-white text-plum-950 text-[10px] font-bold">2</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Expandable Search Bar -->
+            <div id="mobile-search-bar" class="hidden md:hidden pb-3">
+                <div class="relative">
+                    <i data-lucide="search" class="w-4 h-4 text-plum-600 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                    <input 
+                        id="mobile-search-input" 
+                        type="text" 
+                        oninput="handleSearch(this.value)" 
+                        placeholder="Search dresses, blazers, cashmere..." 
+                        class="w-full pl-10 pr-4 py-2 rounded-full bg-blush-100 border border-blush-300 text-xs text-plum-950 focus:outline-none focus:border-lavender-500"
+                    >
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Slide-Down Navigation Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-blush-50 border-t border-blush-300 px-6 py-5 space-y-3 shadow-xl">
+            <a href="#collections" onclick="closeMobileMenu()" class="block py-2 text-xs uppercase tracking-[0.2em] font-semibold text-plum-950 hover:text-roseberry-500">Featured Collections</a>
+            <a href="#categories" onclick="closeMobileMenu()" class="block py-2 text-xs uppercase tracking-[0.2em] font-semibold text-plum-950 hover:text-roseberry-500">Shop by Category</a>
+            <a href="#offers" onclick="closeMobileMenu()" class="block py-2 text-xs uppercase tracking-[0.2em] font-semibold text-plum-950 hover:text-roseberry-500">Seasonal Offers & Bundles</a>
+            <a href="#catalog" onclick="resetAllFilters(); closeMobileMenu()" class="block py-2 text-xs uppercase tracking-[0.2em] font-semibold text-plum-950 hover:text-roseberry-500">All Ready-to-Wear (12)</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- =====================================================================
+             2. EDITORIAL HERO BANNER (BLUSH & LAVENDER CAPSULE COLLECTION)
+             ===================================================================== -->
+        <section class="relative border-b border-blush-300 overflow-hidden bg-gradient-to-br from-blush-50 via-[#F8EDF5] to-[#EFE5F6]">
+            <!-- Soft Ambient Blush & Lavender Glows -->
+            <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-roseberry-400/15 blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-lavender-500/15 blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                    
+                    <!-- Left Editorial Copy -->
+                    <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-blush-300 bg-white/80 backdrop-blur-sm shadow-xs">
+                            <span class="w-2 h-2 rounded-full bg-editorial-gradient animate-pulse"></span>
+                            <span class="text-[11px] uppercase tracking-[0.22em] font-semibold text-plum-800">La Vie en Lavande • Capsule ’26</span>
+                        </div>
+
+                        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-[64px] font-medium text-plum-950 leading-[1.06] tracking-tight">
+                            Poetic Tailoring in <span class="italic font-normal text-roseberry-500">Blush Quartz</span> & <span class="italic font-normal text-lavender-500">Wisteria</span>.
+                        </h1>
+
+                        <p class="text-sm sm:text-base text-plum-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                            Luminous mulberry silk slip dresses, double-faced lavender wool tailoring, and cloud-soft rose cashmere crafted in numbered small-atelier editions.
+                        </p>
+
+                        <!-- Interactive Hero CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#catalog" onclick="resetAllFilters()" class="btn-tactile w-full sm:w-auto px-8 py-4 rounded-full bg-editorial-gradient text-white text-xs font-bold uppercase tracking-[0.18em] shadow-lg flex items-center justify-center gap-2.5">
+                                <span>Shop The Capsule</span>
+                                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#collections" class="btn-tactile w-full sm:w-auto px-8 py-4 rounded-full bg-white/85 hover:bg-white border border-blush-300 text-plum-950 text-xs font-bold uppercase tracking-[0.18em] flex items-center justify-center gap-2">
+                                <span>Explore Lookbook</span>
+                                <i data-lucide="arrow-down-right" class="w-4 h-4 text-lavender-500"></i>
+                            </a>
+                        </div>
+
+                        <!-- Editorial Pillars -->
+                        <div class="pt-6 border-t border-blush-300 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0 text-left">
+                            <div>
+                                <p class="font-serif text-xl sm:text-2xl font-semibold text-plum-950">22-Momme</p>
+                                <p class="text-[11px] text-plum-600 mt-0.5">Pure mulberry silk</p>
+                            </div>
+                            <div>
+                                <p class="font-serif text-xl sm:text-2xl font-semibold text-plum-950">Grade-A</p>
+                                <p class="text-[11px] text-plum-600 mt-0.5">Rose cashmere knits</p>
+                            </div>
+                            <div>
+                                <p class="font-serif text-xl sm:text-2xl font-semibold text-roseberry-500">VERA20</p>
+                                <p class="text-[11px] text-plum-600 mt-0.5">20% private privilege</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Real Fashion Editorial Lookbook Composition -->
+                    <div class="lg:col-span-6">
+                        <div class="grid grid-cols-12 gap-4 items-end">
+                            <!-- Main Lookbook Photo 01 -->
+                            <div class="col-span-7 bg-white rounded-3xl p-4 sm:p-5 border border-blush-300 shadow-xl relative overflow-hidden group">
+                                <div class="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-plum-600 mb-3">
+                                    <span>Look 01 — Silk Couture</span>
+                                    <span class="text-roseberry-500 font-bold">AW26</span>
+                                </div>
+                                <div class="aspect-[3/4] w-full rounded-2xl overflow-hidden bg-blush-100 relative">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" 
+                                        alt="Editorial fashion model in soft pastel couture ensemble"
+                                        class="steady-photo w-full h-full object-cover object-center"
+                                        onerror="handleImgFallback(this, 'Blush Silk Look 01')"
+                                    >
+                                    <div class="absolute inset-0 bg-gradient-to-t from-plum-950/35 via-transparent to-transparent"></div>
+                                </div>
+                                <div class="mt-4 flex items-center justify-between gap-2">
+                                    <div>
+                                        <p class="font-serif text-lg font-semibold text-plum-950 leading-tight">Blush Quartz Silk Slip</p>
+                                        <p class="text-xs text-plum-600">$490 • 22-Momme Silk</p>
+                                    </div>
+                                    <button onclick="openQuickView('p1')" class="btn-tactile px-4 py-2 rounded-full bg-plum-950 hover:bg-roseberry-500 text-white text-[11px] font-semibold uppercase tracking-wider">
+                                        Quick View
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Secondary Lookbook Photo 02 -->
+                            <div class="col-span-5">
+                                <div class="bg-plum-950 text-blush-50 rounded-3xl p-4 sm:p-5 shadow-xl relative overflow-hidden group border border-lavender-500/30">
+                                    <span class="text-[10px] uppercase tracking-[0.2em] text-roseberry-400 font-semibold block mb-2.5">Look 02 — Tailoring</span>
+                                    <div class="aspect-[3/4] w-full rounded-2xl overflow-hidden bg-plum-800">
+                                        <img 
+                                            src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80" 
+                                            alt="Luxury tailored coat and editorial street silhouette"
+                                            class="steady-photo w-full h-full object-cover object-center"
+                                            onerror="handleImgFallback(this, 'Lavender Tailoring')"
+                                        >
+                                    </div>
+                                    <div class="mt-3">
+                                        <p class="font-serif text-base font-medium text-white">Wisteria Wool Blazer</p>
+                                        <button onclick="openQuickView('p5')" class="btn-tactile mt-2 px-3.5 py-1.5 rounded-full bg-white/15 hover:bg-editorial-gradient text-white text-[10px] uppercase tracking-widest font-semibold inline-flex items-center gap-1">
+                                            <span>Inspect Piece</span>
+                                            <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             3. FEATURED COLLECTIONS SECTION (REAL EDITORIAL PHOTOGRAPHY)
+             ===================================================================== -->
+        <section id="collections" class="py-16 sm:py-20 bg-blush-100/70 border-b border-blush-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-[11px] uppercase tracking-[0.25em] text-roseberry-500 font-bold">Curated Capsules</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-plum-950 mt-2">Featured Collections</h2>
+                    <p class="text-sm text-plum-600 mt-3 leading-relaxed">
+                        Three poetic design chapters celebrating luminous blush silks, structured lavender tailoring, and evening velvet.
+                    </p>
+                </div>
+
+                <!-- 3 Featured Collection Editorial Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+                    
+                    <!-- Collection 1: The Rose Cashmere Edit -->
+                    <article class="group bg-white rounded-3xl overflow-hidden border border-blush-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="h-64 bg-blush-100 relative overflow-hidden">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80" 
+                                    alt="The Rose Cashmere Edit knitwear collection"
+                                    class="steady-photo w-full h-full object-cover object-center"
+                                    onerror="handleImgFallback(this, 'The Rose Cashmere Edit')"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-plum-950/40 via-transparent to-transparent"></div>
+                                <span class="absolute top-4 left-4 px-3.5 py-1 rounded-full bg-white/90 text-plum-950 text-[10px] font-bold uppercase tracking-widest shadow-xs">Capsule I</span>
+                            </div>
+                            <div class="p-6 sm:p-7">
+                                <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-plum-950">The Rose Cashmere Edit</h3>
+                                <p class="text-xs sm:text-sm text-plum-600 leading-relaxed mt-2.5">
+                                    Featherlight 2-ply Inner Mongolian cashmere dyed in botanical rosewater and warm peony hues for tactile serenity.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 sm:px-7 pb-6">
+                            <button onclick="filterByCollection('The Rose Cashmere Edit')" class="btn-tactile w-full py-3.5 px-5 rounded-full border border-plum-950 text-plum-950 hover:bg-plum-950 hover:text-white text-xs font-bold uppercase tracking-[0.18em] flex items-center justify-center gap-2">
+                                <span>Shop The Edit</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Collection 2: Lavender Tailoring -->
+                    <article class="group bg-plum-950 text-blush-50 rounded-3xl overflow-hidden border border-lavender-500/30 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="h-64 bg-plum-800 relative overflow-hidden">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80" 
+                                    alt="Lavender Tailoring blazer and outerwear"
+                                    class="steady-photo w-full h-full object-cover object-center"
+                                    onerror="handleImgFallback(this, 'Lavender Tailoring')"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-plum-950/60 via-transparent to-transparent"></div>
+                                <span class="absolute top-4 left-4 px-3.5 py-1 rounded-full bg-editorial-gradient text-white text-[10px] font-bold uppercase tracking-widest shadow-xs">Capsule II</span>
+                            </div>
+                            <div class="p-6 sm:p-7">
+                                <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-white">Lavender Tailoring</h3>
+                                <p class="text-xs sm:text-sm text-blush-200/80 leading-relaxed mt-2.5">
+                                    Architectural peak-lapel blazers, fluid high-waist trousers, and double-faced coats cut in soft wisteria and mauve wool.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 sm:px-7 pb-6">
+                            <button onclick="filterByCollection('Lavender Tailoring')" class="btn-tactile w-full py-3.5 px-5 rounded-full bg-editorial-gradient text-white text-xs font-bold uppercase tracking-[0.18em] flex items-center justify-center gap-2 shadow-md">
+                                <span>Shop Tailoring</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Collection 3: Velvet Evening Capsule -->
+                    <article class="group bg-white rounded-3xl overflow-hidden border border-blush-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="h-64 bg-blush-100 relative overflow-hidden">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=800&q=80" 
+                                    alt="Velvet Evening Capsule silk and eveningwear"
+                                    class="steady-photo w-full h-full object-cover object-center"
+                                    onerror="handleImgFallback(this, 'Velvet Evening Capsule')"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-plum-950/40 via-transparent to-transparent"></div>
+                                <span class="absolute top-4 left-4 px-3.5 py-1 rounded-full bg-lavender-500 text-white text-[10px] font-bold uppercase tracking-widest shadow-xs">Capsule III</span>
+                            </div>
+                            <div class="p-6 sm:p-7">
+                                <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-plum-950">Velvet Evening Capsule</h3>
+                                <p class="text-xs sm:text-sm text-plum-600 leading-relaxed mt-2.5">
+                                    Bias-cut mulberry silk gowns, luminous satin camisoles, and plum evening silhouettes for candlelit soirées.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 sm:px-7 pb-6">
+                            <button onclick="filterByCollection('Velvet Evening Capsule')" class="btn-tactile w-full py-3.5 px-5 rounded-full border border-plum-950 text-plum-950 hover:bg-plum-950 hover:text-white text-xs font-bold uppercase tracking-[0.18em] flex items-center justify-center gap-2">
+                                <span>Discover Evening</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             4. PROMOTIONAL OFFERS & BUNDLE DEALS BANNER STRIP
+             ===================================================================== -->
+        <section id="offers" class="py-12 bg-gradient-to-r from-plum-950 via-[#381F3B] to-plum-950 text-blush-50 border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    
+                    <!-- Bundle Offer Card 1 -->
+                    <div class="lg:col-span-7 bg-white/[0.06] backdrop-blur-md border border-white/15 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+                        <div class="space-y-2">
+                            <span class="inline-block px-3 py-1 rounded-full bg-lavender-500/25 text-lavender-400 text-[10px] font-bold uppercase tracking-[0.2em]">
+                                Atelier Knitwear Privilege
+                            </span>
+                            <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-white">
+                                Buy 2 Knitwear Pieces, Save 25%
+                            </h3>
+                            <p class="text-xs sm:text-sm text-blush-200/80 max-w-md">
+                                Pair any two rose cashmere sweaters or merino cardigans—25% bundle savings apply automatically in your shopping bag.
+                            </p>
+                        </div>
+                        <button onclick="filterByCategory('Knitwear')" class="btn-tactile px-6 py-3.5 rounded-full bg-white hover:bg-blush-100 text-plum-950 text-xs font-bold uppercase tracking-[0.16em] flex-shrink-0 shadow-md">
+                            Shop Knitwear
+                        </button>
+                    </div>
+
+                    <!-- Flash Markdown Card 2 -->
+                    <div class="lg:col-span-5 bg-editorial-gradient rounded-3xl p-6 sm:p-8 flex flex-col justify-between gap-4 shadow-xl">
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] font-bold uppercase tracking-[0.22em] text-white/90">Private Salon Offer</span>
+                                <span class="px-2.5 py-0.5 rounded-full bg-plum-950/35 text-white text-[10px] font-semibold">LIMITED RUN</span>
+                            </div>
+                            <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-white mt-2">
+                                Extra 20% Off Sitewide
+                            </h3>
+                            <p class="text-xs text-white/90 mt-1">
+                                Apply code <strong>VERA20</strong> inside your shopping bag at checkout.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-3 pt-1">
+                            <button onclick="copyPromoCode('VERA20', this)" class="btn-tactile px-5 py-2.5 rounded-full bg-plum-950 hover:bg-black text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+                                <span>Copy VERA20</span>
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <button onclick="toggleSaleOnly()" class="btn-tactile px-4 py-2.5 rounded-full bg-white/20 hover:bg-white/30 text-white text-xs font-bold uppercase tracking-wider">
+                                View Sale Pieces
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             5. INTERACTIVE CLOTHING CATEGORIES & PRODUCT CATALOG (12 PRODUCTS)
+             ===================================================================== -->
+        <section id="categories" class="py-16 sm:py-24 bg-blush-50">
+            <div id="catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Title & Live Item Counter -->
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 mb-8 border-b border-blush-300">
+                    <div>
+                        <span class="text-[11px] uppercase tracking-[0.25em] text-roseberry-500 font-bold">Ready-to-Wear Atelier</span>
+                        <h2 id="catalog-heading" class="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-plum-950 mt-1">All Ready-to-Wear</h2>
+                        <p id="catalog-count" class="text-xs text-plum-600 mt-2">Showing 12 curated garments</p>
+                    </div>
+
+                    <!-- Interactive Sort Pills & Wishlist/Sale Toggles -->
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <button onclick="toggleSaleOnly()" id="sale-toggle-btn" class="btn-tactile px-4 py-2 rounded-full border border-blush-300 bg-white text-xs font-semibold text-plum-950 hover:border-roseberry-500 flex items-center gap-1.5">
+                            <i data-lucide="tag" class="w-3.5 h-3.5 text-roseberry-500"></i>
+                            <span>On Sale</span>
+                        </button>
+
+                        <button onclick="toggleWishlistFilter()" id="wishlist-filter-btn" class="btn-tactile px-4 py-2 rounded-full border border-blush-300 bg-white text-xs font-semibold text-plum-950 hover:border-lavender-500 flex items-center gap-1.5">
+                            <i data-lucide="heart" class="w-3.5 h-3.5 text-roseberry-500"></i>
+                            <span>Saved Wishlist Only</span>
+                        </button>
+
+                        <select id="sort-select" onchange="handleSort(this.value)" aria-label="Sort garments" class="px-4 py-2 rounded-full bg-blush-100 border border-blush-300 text-xs font-semibold text-plum-950 focus:outline-none focus:border-lavender-500 cursor-pointer">
+                            <option value="featured">Sort: Featured</option>
+                            <option value="price-asc">Sort: Price Low–High</option>
+                            <option value="price-desc">Sort: Price High–Low</option>
+                            <option value="sale">Sort: Best Savings</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Interactive Category Filter Pills Bar -->
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-10">
+                    <div id="category-pills" class="flex flex-wrap items-center gap-2.5" role="tablist" aria-label="Clothing Categories">
+                        <!-- Rendered dynamically -->
+                    </div>
+
+                    <!-- Active Collection / Reset Filter Banner -->
+                    <div id="active-filter-banner" class="hidden items-center gap-2">
+                        <span id="active-filter-label" class="px-3.5 py-1.5 rounded-full bg-lavender-500/15 border border-lavender-500/30 text-lavender-600 text-xs font-bold"></span>
+                        <button onclick="resetAllFilters()" class="btn-tactile px-3.5 py-1.5 rounded-full bg-plum-950 text-white text-xs font-semibold">
+                            Reset Filters
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 12 Real Photography Product Cards Grid -->
+                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10">
+                    <!-- Rendered dynamically via JavaScript -->
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- =====================================================================
+         6. EDITORIAL FOOTER WITH INTERACTIVE VIP NEWSLETTER SIGNUP
+         ===================================================================== -->
+    <footer class="bg-plum-950 text-blush-50 pt-16 pb-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+                
+                <!-- Brand Column -->
+                <div class="lg:col-span-4 space-y-4">
+                    <span class="font-serif text-3xl font-semibold tracking-[0.18em] uppercase block text-white">ATELIER VERA</span>
+                    <p class="text-xs text-blush-200/75 leading-relaxed max-w-sm">
+                        Poetic luxury tailoring in blush quartz, wisteria, and mulberry silk. Designed in Milan and crafted in numbered small-atelier editions.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <button onclick="showToast('Opening @ateliervera on Instagram')" aria-label="Instagram" class="btn-tactile w-9 h-9 rounded-full border border-white/20 hover:bg-editorial-gradient flex items-center justify-center">
+                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="showToast('Opening ATELIER VERA Digital Lookbook')" aria-label="Lookbook" class="btn-tactile w-9 h-9 rounded-full border border-white/20 hover:bg-editorial-gradient flex items-center justify-center">
+                            <i data-lucide="book-open" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Categories Column -->
+                <div class="lg:col-span-2 space-y-3">
+                    <h4 class="text-[11px] font-bold uppercase tracking-[0.2em] text-roseberry-400">Categories</h4>
+                    <ul class="space-y-2 text-xs text-blush-200/75">
+                        <li><button onclick="filterByCategory('Dresses')" class="hover:text-white transition-colors">Dresses</button></li>
+                        <li><button onclick="filterByCategory('Knitwear')" class="hover:text-white transition-colors">Knitwear</button></li>
+                        <li><button onclick="filterByCategory('Tailoring')" class="hover:text-white transition-colors">Tailoring</button></li>
+                        <li><button onclick="filterByCategory('Outerwear')" class="hover:text-white transition-colors">Outerwear</button></li>
+                        <li><button onclick="filterByCategory('Tops')" class="hover:text-white transition-colors">Tops</button></li>
+                    </ul>
+                </div>
+
+                <!-- Client Care Column -->
+                <div class="lg:col-span-2 space-y-3">
+                    <h4 class="text-[11px] font-bold uppercase tracking-[0.2em] text-lavender-400">Client Care</h4>
+                    <ul class="space-y-2 text-xs text-blush-200/75">
+                        <li><button onclick="showToast('Complimentary 30-day returns & exchanges')" class="hover:text-white transition-colors">Returns & Exchanges</button></li>
+                        <li><button onclick="showToast('Private styling available in Milan, Paris & NY')" class="hover:text-white transition-colors">Private Styling</button></li>
+                        <li><button onclick="showToast('Free express shipping on orders over $250')" class="hover:text-white transition-colors">Shipping & Duties</button></li>
+                    </ul>
+                </div>
+
+                <!-- Interactive VIP Perks Newsletter Column -->
+                <div class="lg:col-span-4 space-y-3">
+                    <h4 class="text-[11px] font-bold uppercase tracking-[0.2em] text-roseberry-400">VIP Salon & 15% Welcome Perk</h4>
+                    <p class="text-xs text-blush-200/75 leading-relaxed">
+                        Join our private client list to unlock an instant <strong>15% OFF</strong> welcome code and early access to numbered drops.
+                    </p>
+                    <form id="vip-newsletter-form" onsubmit="handleVipSignup(event)" class="flex gap-2 pt-1">
+                        <input id="vip-email-input" type="email" required placeholder="you@domain.com" class="flex-1 px-4 py-2.5 rounded-full bg-white/10 border border-white/20 text-xs text-white placeholder-white/45 focus:outline-none focus:border-roseberry-400">
+                        <button type="submit" class="btn-tactile px-5 py-2.5 rounded-full bg-editorial-gradient text-white text-xs font-bold uppercase tracking-wider flex-shrink-0">
+                            Unlock 15%
+                        </button>
+                    </form>
+                    <!-- Revealed VIP Welcome Perk Card -->
+                    <div id="vip-perk-card" class="hidden p-3.5 rounded-2xl bg-white/10 border border-roseberry-400/40 text-xs space-y-1.5">
+                        <p class="font-semibold text-white flex items-center gap-1.5">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-roseberry-400"></i>
+                            <span>Welcome to the ATELIER VERA Salon!</span>
+                        </p>
+                        <p class="text-blush-200/85">
+                            Your personal welcome privilege code: <strong class="text-roseberry-400 font-mono">SALON15</strong> (or use <strong>VERA20</strong> for 20% off today).
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-blush-200/50">
+                <p>&copy; 2026 ATELIER VERA. All rights reserved.</p>
+                <p>Blush Quartz & Wisteria Edition • Code VERA20</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =====================================================================
+         QUICK-VIEW GARMENT MODAL
+         ===================================================================== -->
+    <div id="quickview-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-950/75 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="qv-title">
+        <div class="bg-blush-50 text-plum-950 rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-blush-300 grid grid-cols-1 md:grid-cols-12 max-h-[90vh] overflow-y-auto">
+            
+            <!-- Left Real Photography Stage -->
+            <div class="md:col-span-6 bg-blush-100 relative min-h-[320px]">
+                <img id="qv-img" src="" alt="" class="w-full h-full object-cover object-center">
+                <span id="qv-badge" class="absolute top-4 left-4 px-3.5 py-1 rounded-full bg-editorial-gradient text-white text-[10px] font-bold uppercase tracking-widest shadow"></span>
+            </div>
+
+            <!-- Right Details & Interactive Selectors -->
+            <div class="md:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-5">
+                <div>
+                    <div class="flex items-start justify-between gap-3">
+                        <div>
+                            <span id="qv-category" class="text-[10px] uppercase tracking-[0.2em] text-roseberry-500 font-bold"></span>
+                            <h3 id="qv-title" class="font-serif text-2xl sm:text-3xl font-semibold text-plum-950 mt-1"></h3>
+                        </div>
+                        <button onclick="closeQuickView()" class="p-1.5 rounded-full hover:bg-blush-200 text-plum-950" aria-label="Close Modal">
+                            <i data-lucide="x" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <div id="qv-price-row" class="flex items-baseline gap-3 mt-2.5"></div>
+                    <p id="qv-desc" class="text-xs sm:text-sm text-plum-600 leading-relaxed mt-3.5"></p>
+
+                    <!-- Color Swatches -->
+                    <div class="mt-5">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-plum-950 block mb-2">
+                            Shade: <span id="qv-selected-color-name" class="font-normal text-plum-600"></span>
+                        </span>
+                        <div id="qv-colors" class="flex items-center gap-2.5"></div>
+                    </div>
+
+                    <!-- Size Selector -->
+                    <div class="mt-5">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-plum-950">Select Size</span>
+                            <span class="text-[11px] text-plum-600">Italian Atelier Fit</span>
+                        </div>
+                        <div id="qv-sizes" class="grid grid-cols-5 gap-2"></div>
+                    </div>
+
+                    <!-- Fabric & Fit Notes -->
+                    <div class="mt-5 p-3.5 rounded-2xl bg-blush-100 border border-blush-300 space-y-1.5 text-xs">
+                        <p><strong class="text-plum-950">Materiality:</strong> <span id="qv-fabric" class="text-plum-600"></span></p>
+                        <p><strong class="text-plum-950">Silhouette:</strong> <span id="qv-fit" class="text-plum-600"></span></p>
+                    </div>
+                </div>
+
+                <div class="pt-2 flex items-center gap-3">
+                    <button id="qv-add-btn" class="btn-tactile flex-1 py-3.5 px-6 rounded-full bg-editorial-gradient text-white text-xs font-bold uppercase tracking-[0.18em] shadow-md">
+                        Add to Shopping Bag
+                    </button>
+                    <button id="qv-wish-btn" class="btn-tactile p-3.5 rounded-full bg-white border border-blush-300 text-plum-950" aria-label="Save to Wishlist">
+                        <i data-lucide="heart" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         SAVED WISHLIST MODAL
+         ===================================================================== -->
+    <div id="wishlist-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-950/75 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="wish-modal-title">
+        <div class="bg-blush-50 text-plum-950 rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-blush-300">
+            <div class="flex items-center justify-between pb-4 border-b border-blush-300">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="heart" class="w-5 h-5 text-roseberry-500 fill-current"></i>
+                    <h3 id="wish-modal-title" class="font-serif text-2xl font-semibold text-plum-950">Your Saved Wishlist</h3>
+                </div>
+                <button onclick="closeWishlistModal()" class="p-1.5 rounded-full hover:bg-blush-200 text-plum-950" aria-label="Close Wishlist">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div id="wishlist-modal-list" class="py-5 max-h-80 overflow-y-auto space-y-3">
+                <!-- Populated dynamically -->
+            </div>
+            <div class="pt-4 border-t border-blush-300 flex items-center justify-between gap-3">
+                <button onclick="closeWishlistModal(); toggleWishlistFilter();" class="text-xs font-semibold text-lavender-600 hover:underline">
+                    View in Main Grid
+                </button>
+                <button onclick="closeWishlistModal()" class="btn-tactile px-6 py-2.5 rounded-full bg-plum-950 text-white text-xs font-bold uppercase tracking-wider">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         7. SLIDE-OVER SHOPPING BAG DRAWER
+         ===================================================================== -->
+    <div id="bag-backdrop" onclick="closeBagDrawer()" class="fixed inset-0 z-50 bg-plum-950/60 backdrop-blur-xs hidden transition-opacity"></div>
+
+    <aside id="bag-drawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-blush-50 text-plum-950 shadow-2xl border-l border-blush-300 transform translate-x-full transition-transform duration-300 ease-out flex flex-col" role="dialog" aria-modal="true" aria-labelledby="bag-drawer-title">
+        
+        <!-- Bag Header -->
+        <div class="px-6 py-5 border-b border-blush-300 flex items-center justify-between bg-white">
+            <div class="flex items-center gap-2.5">
+                <i data-lucide="shopping-bag" class="w-5 h-5 text-roseberry-500"></i>
+                <h3 id="bag-drawer-title" class="font-serif text-2xl font-semibold text-plum-950">Shopping Bag</h3>
+                <span id="drawer-count-label" class="text-xs text-plum-600">(2 items)</span>
+            </div>
+            <button onclick="closeBagDrawer()" class="p-2 rounded-full hover:bg-blush-100 text-plum-950" aria-label="Close Shopping Bag">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <!-- Complimentary Shipping Progress Bar ($250 threshold) -->
+        <div class="px-6 py-3.5 bg-blush-100 border-b border-blush-300">
+            <p id="shipping-status-text" class="text-xs font-medium text-plum-950 mb-2"></p>
+            <div class="w-full h-2 bg-blush-200 rounded-full overflow-hidden">
+                <div id="shipping-progress-bar" class="h-full bg-editorial-gradient rounded-full transition-all duration-300" style="width: 100%;"></div>
+            </div>
+        </div>
+
+        <!-- Bag Items List -->
+        <div id="bag-items-container" class="flex-1 overflow-y-auto px-6 py-5 space-y-4">
+            <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Bag Footer: Promo Code ('VERA20'), Bundle Savings & Checkout -->
+        <div class="p-6 bg-white border-t border-blush-300 space-y-4">
+            <form onsubmit="applyBagPromo(event)" class="flex gap-2">
+                <input 
+                    id="bag-promo-input" 
+                    type="text" 
+                    placeholder="Promo code (try VERA20)" 
+                    class="flex-1 px-4 py-2.5 rounded-full bg-blush-50 border border-blush-300 text-xs uppercase tracking-wider text-plum-950 placeholder-plum-400 focus:outline-none focus:border-lavender-500"
+                >
+                <button type="submit" class="btn-tactile px-5 py-2.5 rounded-full bg-plum-950 hover:bg-lavender-600 text-white text-xs font-bold uppercase tracking-wider">
+                    Apply
+                </button>
+            </form>
+
+            <!-- Active Promo Badge -->
+            <div id="applied-promo-banner" class="hidden items-center justify-between px-3.5 py-2 rounded-xl bg-lavender-500/15 border border-lavender-500/30 text-xs text-lavender-600">
+                <span class="font-semibold flex items-center gap-1.5">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    Code <strong>VERA20</strong> applied (20% off)
+                </span>
+                <button onclick="removePromoCode()" class="underline text-[11px] font-bold">Remove</button>
+            </div>
+
+            <!-- Totals Breakdown -->
+            <div class="space-y-1.5 text-xs pt-1">
+                <div class="flex justify-between text-plum-600">
+                    <span>Subtotal</span>
+                    <span id="bag-subtotal" class="font-semibold text-plum-950">$0.00</span>
+                </div>
+                <div id="bag-bundle-row" class="hidden justify-between text-roseberry-600 font-semibold">
+                    <span>Knitwear Bundle (25% off 2+ knits)</span>
+                    <span id="bag-bundle-amount">-$0.00</span>
+                </div>
+                <div id="bag-discount-row" class="hidden justify-between text-lavender-600 font-semibold">
+                    <span>Promo Privilege (VERA20)</span>
+                    <span id="bag-discount-amount">-$0.00</span>
+                </div>
+                <div class="flex justify-between text-plum-600">
+                    <span>Express Courier</span>
+                    <span id="bag-shipping-cost" class="font-semibold text-plum-950">Complimentary</span>
+                </div>
+                <div class="flex justify-between items-baseline pt-2.5 border-t border-blush-300">
+                    <span class="text-sm font-bold uppercase tracking-wider text-plum-950">Estimated Total</span>
+                    <span id="bag-final-total" class="font-serif text-2xl font-bold text-plum-950">$0.00</span>
+                </div>
+            </div>
+
+            <button onclick="handleCheckout()" class="btn-tactile w-full py-4 rounded-full bg-editorial-gradient text-white text-xs font-bold uppercase tracking-[0.2em] shadow-lg flex items-center justify-center gap-2">
+                <span>Proceed to Checkout</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- =====================================================================
+         CHECKOUT CONFIRMATION MODAL
+         ===================================================================== -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-950/80 backdrop-blur-sm" role="dialog" aria-modal="true">
+        <div class="bg-blush-50 text-plum-950 rounded-3xl max-w-md w-full p-8 text-center space-y-5 shadow-2xl border border-blush-300">
+            <div class="w-14 h-14 rounded-full bg-editorial-gradient text-white flex items-center justify-center mx-auto shadow-lg">
+                <i data-lucide="check" class="w-7 h-7"></i>
+            </div>
+            <div>
+                <span class="text-[10px] uppercase tracking-[0.25em] text-roseberry-500 font-bold">Order Confirmed</span>
+                <h3 class="font-serif text-3xl font-semibold text-plum-950 mt-1">Thank You From ATELIER VERA</h3>
+                <p id="order-ref-text" class="text-xs font-mono text-plum-600 mt-1">Reference #AV-92410</p>
+            </div>
+            <p class="text-xs sm:text-sm text-plum-600 leading-relaxed">
+                Your numbered garments are being delicately wrapped in lavender tissue at our Milan atelier. A courier tracking dossier has been dispatched.
+            </p>
+            <button onclick="closeCheckoutModal()" class="btn-tactile w-full py-3.5 rounded-full bg-plum-950 text-white text-xs font-bold uppercase tracking-[0.18em]">
+                Continue Exploring
+            </button>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         NON-INTRUSIVE TOAST NOTIFICATION
+         ===================================================================== -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-plum-950 text-blush-50 px-5 py-3.5 rounded-2xl shadow-2xl border border-roseberry-400/30 flex items-center gap-3 text-xs font-medium">
+            <span class="w-2.5 h-2.5 rounded-full bg-editorial-gradient"></span>
+            <span id="toast-msg">Notification</span>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         JAVASCRIPT APPLICATION ENGINE
+         ===================================================================== -->
+    <script>
+        /* -------------------------------------------------------------------
+           1. IMAGE FALLBACK HANDLER (GUARANTEES ZERO BROKEN IMAGES)
+           ------------------------------------------------------------------- */
+        function handleImgFallback(imgEl, label) {
+            imgEl.onerror = null;
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750">
+                    <defs>
+                        <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#F6EDF3"/>
+                            <stop offset="50%" stop-color="#E8D5E0"/>
+                            <stop offset="100%" stop-color="#D8C4EC"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="600" height="750" fill="url(#g)"/>
+                    <text x="50%" y="48%" dominant-baseline="middle" text-anchor="middle" fill="#2D1B2E" font-family="Georgia, serif" font-size="28" font-weight="600">ATELIER VERA</text>
+                    <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#6D546E" font-family="sans-serif" font-size="16">${label}</text>
+                </svg>
+            `;
+            imgEl.src = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+        }
+
+        /* -------------------------------------------------------------------
+           2. RIPPLE BURST EFFECT FOR INTERACTIVE BUTTONS
+           ------------------------------------------------------------------- */
+        document.addEventListener('click', function (e) {
+            const btn = e.target.closest('.btn-tactile');
+            if (!btn) return;
+            const rect = btn.getBoundingClientRect();
+            const circle = document.createElement('span');
+            const diameter = Math.max(rect.width, rect.height);
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${e.clientX - rect.left - diameter / 2}px`;
+            circle.style.top = `${e.clientY - rect.top - diameter / 2}px`;
+            circle.classList.add('ripple-circle');
+            btn.appendChild(circle);
+            setTimeout(() => circle.remove(), 650);
+        });
+
+        /* -------------------------------------------------------------------
+           3. CATALOG DATA: 12 CURATED GARMENTS WITH REAL UNSPLASH PHOTOGRAPHY
+           ------------------------------------------------------------------- */
+        const productsData = [
+            {
+                id: 'p1',
+                name: 'Blush Quartz Bias Silk Slip Dress',
+                category: 'Dresses',
+                collection: 'Velvet Evening Capsule',
+                price: 490,
+                originalPrice: null,
+                badge: 'Atelier Signature',
+                primaryImg: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
+                hoverImg: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=800&q=80',
+                colors: [
+                    { name: 'Blush Quartz', hex: '#E8A5BE', filter: 'none' },
+                    { name: 'Wisteria Mist', hex: '#B99CE0', filter: 'hue-rotate(38deg)' },
+                    { name: 'Plum Velvet', hex: '#4A2545', filter: 'brightness(0.75) saturate(1.25)' }
+                ],
+                sizes: ['XS', 'S', 'M', 'L', 'XL'],
+                fabric: '100% Heavyweight 22-Momme Mulberry Silk Charmeuse',
+                fit: 'Cut on a 45-degree bias to skim the silhouette fluidly.',
+                desc: 'Luminous floor-skimming bias slip dress with delicate rouleau straps and draped cowl back.'
+            },
+            {
+                id: 'p2',
+                name: 'Rosewater Grade-A Cashmere Turtleneck',
+                category: 'Knitwear',
+                collection: 'The Rose Cashmere Edit',
+                price: 380,
+                originalPrice: null,
+                badge: 'Bundle Eligible',
+                primaryImg: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80',
+                hoverImg: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=800&q=80',
+                colors: [
+                    { name: 'Rosewater', hex: '#DF9BB4', filter: 'none' },
+                    { name: 'Soft Lilac', hex: '#C2A8E3', filter: 'hue-rotate(35deg)' },
+                    { name: 'Ivory Petal', hex: '#F7ECEF', filter: 'brightness(1.06)' }
+                ],
+                sizes: ['XS', 'S', 'M', 'L', 'XL'],
+                fabric: '100% 2-Ply Grade-A Inner Mongolian Cashmere (7-Gauge)',
+                fit: 'Relaxed boxy drape with dropped shoulders.',
+                desc: 'Cloud-soft ribbed turtleneck spun from undyed organic cashmere fibers in botanical rose.'
+            },
+            {
+                id: 'p3',
+                name: 'Wisteria Peak-Lapel Wool Blazer',
+                category: 'Tailoring',
+                collection: 'Lavender Tailoring',
+                price: 540,
+                originalPrice: 680,
+                badge: '20% Off',
+                primaryImg: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80',
+                hoverImg: 'https://images.unsplash.com/photo-1548624313-0396c75e4b1a?auto=format&fit=crop&w=800&q=80',
+                colors: [
+                    { name: 'Wisteria Mist', hex: '#B497D6', filter: 'none' },
+                    { name: 'Mauve Dusk', hex: '#9D6C8B', filter: 'hue-rotate(-25deg)' }
+                ],
+                sizes: ['XS', 'S', 'M', 'L', 'XL'],
+                fabric: '100% Italian Barathea Virgin Wool, Silk-Cupro Lining',
+                fit: 'Sharp architectural shoulder with gently nipped waist.',
+                desc: 'Single-breasted Milanese tailored blazer finished with hand-sewn buttonholes and mother-of-pearl buttons.'
+            },
+            {
+                id: 'p4',
+                name: 'Double-Faced Peony Belted Trench',
+                category: 'Outerwear',
+                collection: 'Lavender Tailoring',
+                price: 690,
+                originalPrice: 860,
+                badge: '20% Off',
+                primaryImg: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80',
+                hoverImg: 'https://images.unsplash.com/photo-1544022613-e87ca75a784a?auto=format&fit=crop&w=800&q=80',
+                colors: [
+                    { name: 'Muted Peony', hex: '#C98CA7', filter: 'none' },
+                    { name: 'Velvet Plum', hex: '#3D223E', filter: 'brightness(0.75)' }
+                ],
+                sizes: ['XS', 'S', 'M', 'L'],
+                fabric: '100% Double-Faced Australian Merino Wool',
+                fit: 'Fluid full-length coat with self-tie waist belt.',
+                desc: 'Hand-finished unlined wool trench coat featuring wide storm lapels and sculpted cuffs.'
+            },
+            {
+                id: 'p5',
+                name: 'Pleated Orchid Silk Midi Skirt',
+                category: 'Dresses',
+                collection: 'Velvet Evening Capsule',
+                price: 340,
+                originalPrice: null,
+                badge: 'New Arrival',
+                primaryImg: 'https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=800&q=80',
+                hoverImg: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
+                colors: [
+                    { name: 'Orchid Pink', hex: '#D986B5', filter: 'none' },
+                    { name: 'Lavender Fog', hex: '#C5B3E6', filter: 'hue-rotate(30deg)' }
+                ],
+                sizes: ['XS', 'S', 'M', 'L'],
+                fabric: '100% Sunburst-Pleated Mulberry Silk Crepe',
+                fit: 'High elasticated silk waistband with fluid ankle-grazing hem.',
+                desc: 'Luminous accordion-pleated midi skirt that catches light with every movement.'
+            },
+            {
+                id: 'p6',
+                name: 'High-Waist Mauve Tailored Trousers',
+                category: 'Tailoring',
+                collection: 'Lavender Tailoring',
+                price: 310,
+                originalPrice: 390,
+                badge: '20% Off',
+                primaryImg: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=80',
+                hoverImg: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80',
+                colors: [
+                    { name: 'Soft Mauve', hex: '#A87D9C', filter: 'none' },
+                    { name: 'Rose Ivory', hex: '#F3E5EC', filter: 'brightness(1.08)' }
+                ],
+                sizes: ['XS', 'S', 'M', 'L', 'XL'],
+                fabric: '100% Super 130s Tropical Virgin Wool',
+                fit: 'High rise with elongated wide-leg silhouette.',
+                desc: 'Double-pleated tailored trousers with crisp pressed creases and horn button closure.'
+            },
+            {
+                id: 'p7',
+                name: 'Luminous Satin Cowl Camisole',
+                category: 'Tops',
+                collection: 'Velvet Evening Capsule',
+                price: 210,
+                originalPrice: null,
+                badge: 'Atelier Core',
+                primaryImg: 'https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=800&q=80',
+                hoverImg: 'https://images.unsplash.com/photo-1551163943-3f6a855d1153?auto=format&fit=crop&w=800&q=80',
+                colors: [
+                    { name: 'Champagne Blush', hex: '#ECC6D4', filter: 'none' },
+                    { name: 'Royal Lavender', hex: '#9D79CF', filter: 'hue-rotate(42deg)' }
+                ],
+                sizes: ['XS', 'S', 'M', 'L'],
+                fabric: '100% 19-Momme Silk Satin',
+                fit: 'Softly draped neckline; ideal tucked into tailored trousers.',
+                desc: 'Effortless bias-cut silk camisole with adjustable French-seam straps.'
+            },
+            {
+                id: 'p8',
+                name: 'Bouclé Tweed Cropped Lavender Jacket',
+                category: 'Outerwear',
+                collection: 'Lavender Tailoring',
+                price: 580,
+                originalPrice: null,
+                badge: 'Limited Edition',
+                primaryImg: 'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=80',
+                hoverImg: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80',
+                colors: [
+                    { name: 'Wisteria Tweed', hex: '#B799DA', filter: 'none' },
+                    { name: 'Blush Bouclé', hex: '#E3A8C3', filter: 'hue-rotate(-28deg)' }
+                ],
+                sizes: ['XS', 'S', 'M', 'L'],
+                fabric: '68% French Cotton Bouclé, 22% Wool, 10% Silk Ribbon',
+                fit: 'Boxy cropped waist with hand-braided fringe trim.',
+                desc: 'Woven in Normandy with pastel lavender and rose-gold threads, finished with enamel buttons.'
+            },
+            {
+                id: 'p9',
+                name: 'Ribbed Merino & Silk Rose Cardigan',
+                category: 'Knitwear',
+                collection: 'The Rose Cashmere Edit',
+                price: 295,
+                originalPrice: 365,
+                badge: '19% Off',
+                primaryImg: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=800&q=80',
+                hoverImg: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80',
+                colors: [
+                    { name: 'Dusty Berry', hex: '#C06C94', filter: 'none' },
+                    { name: 'Petal Cream', hex: '#F6EBF0', filter: 'brightness(1.06)' }
+                ],
+                sizes: ['XS', 'S', 'M', 'L', 'XL'],
+                fabric: '70% Extra-Fine Merino Wool, 30% Mulberry Silk',
+                fit: 'Sculpted rib knit with elongated bell cuffs.',
+                desc: 'Deep V-neck fine-gauge cardigan fastened with iridescent lavender-tinted shell buttons.'
+            },
+            {
+                id: 'p10',
+                name: 'Draped Plum Velvet Evening Gown',
+                category: 'Dresses',
+                collection: 'Velvet Evening Capsule',
+                price: 740,
+                originalPrice: 920,
+                badge: '20% Off',
+                primaryImg: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=800&q=80',
+                hoverImg: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
+                colors: [
+                    { name: 'Velvet Plum', hex: '#4B244A', filter: 'none' },
+                    { name: 'Rosewood', hex: '#9E4B72', filter: 'hue-rotate(18deg) brightness(1.1)' }
+                ],
+                sizes: ['XS', 'S', 'M', 'L'],
+                fabric: '82% Mulberry Silk Velvet, 18% Viscose',
+                fit: 'Column silhouette with asymmetric waist gather and side slit.',
+                desc: 'Opulent silk-pile velvet gown engineered to drape softly across the collarbone.'
+            },
+            {
+                id: 'p11',
+                name: 'Silk Bow-Neck Poet Blouse',
+                category: 'Tops',
+                collection: 'The Rose Cashmere Edit',
+                price: 265,
+                originalPrice: null,
+                badge: 'New Season',
+                primaryImg: 'https://images.unsplash.com/photo-1551163943-3f6a855d1153?auto=format&fit=crop&w=800&q=80',
+                hoverImg: 'https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=800&q=80',
+                colors: [
+                    { name: 'Blush Ivory', hex: '#F7EAEF', filter: 'none' },
+                    { name: 'Lilac Mist', hex: '#C7B0E5', filter: 'hue-rotate(36deg)' }
+                ],
+                sizes: ['XS', 'S', 'M', 'L', 'XL'],
+                fabric: '100% Fluid Italian Silk Georgette',
+                fit: 'Billowing bishop sleeves with removable lavallière scarf tie.',
+                desc: 'Romantic georgette blouse designed to layer seamlessly beneath tailored blazers.'
+            },
+            {
+                id: 'p12',
+                name: 'Pointed Satin & Crystal Slingback Heel',
+                category: 'Outerwear',
+                collection: 'Velvet Evening Capsule',
+                price: 430,
+                originalPrice: 520,
+                badge: '17% Off',
+                primaryImg: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80',
+                hoverImg: 'https://images.unsplash.com/photo-1548624313-0396c75e4b1a?auto=format&fit=crop&w=800&q=80',
+                colors: [
+                    { name: 'Rose Satin', hex: '#D882AB', filter: 'none' },
+                    { name: 'Amethyst', hex: '#8A5EC2', filter: 'hue-rotate(40deg)' }
+                ],
+                sizes: ['36', '37', '38', '39', '40'],
+                fabric: '100% Duchesse Silk Satin Upper, Tuscan Leather Sole',
+                fit: 'Elongated pointed toe with 55mm sculpted kitten heel.',
+                desc: 'Hand-lasted Venetian evening slingback adorned with a rose-cut crystal buckle.'
+            }
+        ];
+
+        const categoriesList = ['All', 'Dresses', 'Knitwear', 'Tailoring', 'Outerwear', 'Tops'];
+
+        /* -------------------------------------------------------------------
+           4. APPLICATION STATE
+           ------------------------------------------------------------------- */
+        let selectedCategory = 'All';
+        let selectedCollection = null;
+        let saleOnly = false;
+        let wishlistOnly = false;
+        let searchQuery = '';
+        let sortBy = 'featured';
+
+        const cardSelections = {};
+        productsData.forEach(p => {
+            cardSelections[p.id] = {
+                colorIndex: 0,
+                size: p.sizes.includes('M') ? 'M' : p.sizes[0]
+            };
+        });
+
+        let wishlistIds = new Set(['p1', 'p2']);
+        let bagItems = [
+            { productId: 'p1', colorName: 'Blush Quartz', size: 'S', qty: 1 },
+            { productId: 'p2', colorName: 'Rosewater', size: 'M', qty: 1 }
+        ];
+        let appliedPromo = null;
+
+        /* -------------------------------------------------------------------
+           5. RENDER CATEGORY FILTER PILLS & PRODUCT CARDS
+           ------------------------------------------------------------------- */
+        function renderCategoryPills() {
+            const container = document.getElementById('category-pills');
+            container.innerHTML = categoriesList.map(cat => {
+                const count = cat === 'All'
+                    ? productsData.length
+                    : productsData.filter(p => p.category === cat).length;
+                const isActive = selectedCategory === cat;
+
+                return `
+                <button 
+                    onclick="filterByCategory('${cat}')" 
+                    role="tab"
+                    aria-selected="${isActive}"
+                    class="btn-tactile px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-[0.14em] flex items-center gap-2 ${
+                        isActive 
+                            ? 'bg-editorial-gradient text-white shadow-md' 
+                            : 'bg-white hover:bg-blush-100 text-plum-950 border border-blush-300'
+                    }"
+                >
+                    <span>${cat}</span>
+                    <span class="px-1.5 py-0.5 rounded-full text-[10px] ${isActive ? 'bg-white/25 text-white' : 'bg-blush-100 text-plum-600'}">${count}</span>
+                </button>
+                `;
+            }).join('');
+        }
+
+        function getFilteredProducts() {
+            let list = productsData.filter(p => {
+                if (selectedCategory !== 'All' && p.category !== selectedCategory) return false;
+                if (selectedCollection && p.collection !== selectedCollection) return false;
+                if (saleOnly && !p.originalPrice) return false;
+                if (wishlistOnly && !wishlistIds.has(p.id)) return false;
+                if (searchQuery) {
+                    const hay = `${p.name} ${p.category} ${p.collection} ${p.fabric}`.toLowerCase();
+                    if (!hay.includes(searchQuery)) return false;
+                }
+                return true;
+            });
+
+            if (sortBy === 'price-asc') {
+                list = [...list].sort((a, b) => a.price - b.price);
+            } else if (sortBy === 'price-desc') {
+                list = [...list].sort((a, b) => b.price - a.price);
+            } else if (sortBy === 'sale') {
+                list = [...list].sort((a, b) => {
+                    const savA = a.originalPrice ? (a.originalPrice - a.price) : 0;
+                    const savB = b.originalPrice ? (b.originalPrice - b.price) : 0;
+                    return savB - savA;
+                });
+            }
+            return list;
+        }
+
+        function renderProductGrid() {
+            const grid = document.getElementById('product-grid');
+            const heading = document.getElementById('catalog-heading');
+            const countEl = document.getElementById('catalog-count');
+            const banner = document.getElementById('active-filter-banner');
+            const bannerLabel = document.getElementById('active-filter-label');
+
+            if (wishlistOnly) heading.textContent = 'Your Saved Wishlist';
+            else if (selectedCollection) heading.textContent = selectedCollection;
+            else if (selectedCategory !== 'All') heading.textContent = selectedCategory;
+            else heading.textContent = 'All Ready-to-Wear';
+
+            if (selectedCollection || wishlistOnly || saleOnly || searchQuery) {
+                banner.classList.remove('hidden');
+                banner.classList.add('flex');
+                const parts = [];
+                if (selectedCollection) parts.push(selectedCollection);
+                if (wishlistOnly) parts.push('Wishlist');
+                if (saleOnly) parts.push('On Sale');
+                if (searchQuery) parts.push(`"${searchQuery}"`);
+                bannerLabel.textContent = `Filtered: ${parts.join(' • ')}`;
+            } else {
+                banner.classList.add('hidden');
+                banner.classList.remove('flex');
+            }
+
+            const products = getFilteredProducts();
+            countEl.textContent = `Showing ${products.length} curated ${products.length === 1 ? 'garment' : 'garments'}`;
+
+            if (products.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-16 text-center space-y-4 bg-blush-100 rounded-3xl border border-blush-300">
+                        <p class="font-serif text-2xl text-plum-950">No garments match your current selection</p>
+                        <p class="text-xs text-plum-600">Reset your filters to browse the full Blush & Lavender collection.</p>
+                        <button onclick="resetAllFilters()" class="btn-tactile px-6 py-3 rounded-full bg-editorial-gradient text-white text-xs font-bold uppercase tracking-wider">
+                            Reset All Filters
+                        </button>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            grid.innerHTML = products.map(product => {
+                const sel = cardSelections[product.id];
+                const activeColor = product.colors[sel.colorIndex];
+                const isWish = wishlistIds.has(product.id);
+
+                const priceHtml = product.originalPrice
+                    ? `<div class="flex items-baseline gap-2">
+                           <span class="font-bold text-roseberry-500 text-base">$${product.price}</span>
+                           <span class="text-xs text-plum-400 line-through">$${product.originalPrice}</span>
+                       </div>`
+                    : `<span class="font-bold text-plum-950 text-base">$${product.price}</span>`;
+
+                const swatchesHtml = product.colors.map((c, idx) => `
+                    <button 
+                        onclick="selectCardColor('${product.id}', ${idx})" 
+                        title="${c.name}"
+                        aria-label="Select shade ${c.name}"
+                        class="w-4 h-4 rounded-full border transition-transform ${
+                            sel.colorIndex === idx ? 'ring-2 ring-offset-2 ring-lavender-500 scale-115 border-plum-950/30' : 'border-plum-950/20 hover:scale-110'
+                        }"
+                        style="background-color: ${c.hex};"
+                    ></button>
+                `).join('');
+
+                const sizesHtml = product.sizes.map(sz => `
+                    <button 
+                        onclick="selectCardSize('${product.id}', '${sz}')" 
+                        class="px-2 py-0.5 rounded-md text-[10px] font-bold transition-all ${
+                            sel.size === sz 
+                                ? 'bg-plum-950 text-white shadow-xs scale-105' 
+                                : 'bg-blush-100 text-plum-800 hover:bg-blush-200'
+                        }"
+                    >${sz}</button>
+                `).join('');
+
+                return `
+                <article class="group flex flex-col justify-between bg-white rounded-3xl border border-blush-300 overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300">
+                    <div>
+                        <!-- Single Steady Fashion Photograph -->
+                        <div class="relative aspect-[4/5] bg-blush-100 overflow-hidden">
+                            <img 
+                                src="${product.primaryImg}" 
+                                alt="${product.name}" 
+                                style="filter: ${activeColor.filter};"
+                                class="steady-photo w-full h-full object-cover object-center cursor-pointer"
+                                onclick="openQuickView('${product.id}')"
+                                onerror="handleImgFallback(this, '${product.name}')"
+                            >
+
+                            <!-- Badge -->
+                            <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xs ${
+                                product.originalPrice ? 'bg-editorial-gradient text-white' : 'bg-white/92 text-plum-950 border border-blush-300'
+                            }">
+                                ${product.badge}
+                            </span>
+
+                            <!-- Interactive Wishlist Heart Button -->
+                            <button 
+                                id="heart-btn-${product.id}"
+                                onclick="toggleWishlist('${product.id}', this)" 
+                                aria-label="Save ${product.name} to wishlist"
+                                class="btn-tactile absolute top-3.5 right-3.5 w-9 h-9 rounded-full bg-white/92 hover:bg-white text-plum-950 flex items-center justify-center shadow-sm"
+                            >
+                                <i data-lucide="heart" class="w-4 h-4 ${isWish ? 'text-roseberry-500 fill-current' : 'text-plum-800'}"></i>
+                            </button>
+
+                            <!-- Quick View Pill -->
+                            <button 
+                                onclick="openQuickView('${product.id}')" 
+                                class="btn-tactile absolute bottom-3.5 inset-x-4 py-2.5 rounded-full bg-white/95 hover:bg-plum-950 text-plum-950 hover:text-white text-[11px] font-bold uppercase tracking-[0.16em] shadow-md opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all"
+                            >
+                                Quick View
+                            </button>
+                        </div>
+
+                        <!-- Card Details -->
+                        <div class="p-5 space-y-3">
+                            <div class="flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-plum-600 font-semibold">
+                                <span>${product.category}</span>
+                                <span class="text-lavender-600">${activeColor.name}</span>
+                            </div>
+
+                            <h3 onclick="openQuickView('${product.id}')" class="font-serif text-xl font-semibold text-plum-950 leading-snug cursor-pointer hover:text-roseberry-500 transition-colors">
+                                ${product.name}
+                            </h3>
+
+                            <div class="flex items-center justify-between pt-0.5">
+                                ${priceHtml}
+                                <div class="flex items-center gap-2">
+                                    ${swatchesHtml}
+                                </div>
+                            </div>
+
+                            <!-- Size Selector Strip -->
+                            <div class="pt-2.5 border-t border-blush-300 flex items-center justify-between gap-2">
+                                <span class="text-[10px] uppercase tracking-wider text-plum-600 font-semibold">Size</span>
+                                <div class="flex flex-wrap items-center gap-1">
+                                    ${sizesHtml}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tactile + Quick Add Button with Morphing Checkmark Feedback -->
+                    <div class="px-5 pb-5">
+                        <button 
+                            id="add-btn-${product.id}"
+                            onclick="addToBagFromCard('${product.id}', this)" 
+                            class="btn-tactile w-full py-3 rounded-full bg-plum-950 hover:bg-editorial-gradient text-white text-xs font-bold uppercase tracking-[0.18em] flex items-center justify-center gap-2 shadow-xs"
+                        >
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                            <span>Quick Add</span>
+                        </button>
+                    </div>
+                </article>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        /* -------------------------------------------------------------------
+           6. FILTERING, SORTING & WISHLIST INTERACTIONS
+           ------------------------------------------------------------------- */
+        function filterByCategory(cat) {
+            selectedCategory = cat;
+            selectedCollection = null;
+            wishlistOnly = false;
+            updateToggleButtonStyles();
+            renderCategoryPills();
+            renderProductGrid();
+            document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function filterByCollection(collectionName) {
+            selectedCollection = collectionName;
+            selectedCategory = 'All';
+            wishlistOnly = false;
+            updateToggleButtonStyles();
+            renderCategoryPills();
+            renderProductGrid();
+            document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleSaleOnly() {
+            saleOnly = !saleOnly;
+            updateToggleButtonStyles();
+            renderProductGrid();
+            if (saleOnly) document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleWishlistFilter() {
+            wishlistOnly = !wishlistOnly;
+            updateToggleButtonStyles();
+            renderProductGrid();
+            if (wishlistOnly) document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateToggleButtonStyles() {
+            const saleBtn = document.getElementById('sale-toggle-btn');
+            saleBtn.classList.toggle('bg-roseberry-500', saleOnly);
+            saleBtn.classList.toggle('text-white', saleOnly);
+            saleBtn.classList.toggle('border-roseberry-500', saleOnly);
+
+            const wishBtn = document.getElementById('wishlist-filter-btn');
+            wishBtn.classList.toggle('bg-lavender-500', wishlistOnly);
+            wishBtn.classList.toggle('text-white', wishlistOnly);
+            wishBtn.classList.toggle('border-lavender-500', wishlistOnly);
+        }
+
+        function resetAllFilters() {
+            selectedCategory = 'All';
+            selectedCollection = null;
+            saleOnly = false;
+            wishlistOnly = false;
+            searchQuery = '';
+            document.getElementById('desktop-search').value = '';
+            document.getElementById('mobile-search-input').value = '';
+            document.getElementById('clear-search-btn').classList.add('hidden');
+            updateToggleButtonStyles();
+            renderCategoryPills();
+            renderProductGrid();
+        }
+
+        function handleSearch(val) {
+            searchQuery = val.trim().toLowerCase();
+            document.getElementById('clear-search-btn').classList.toggle('hidden', !searchQuery);
+            renderProductGrid();
+        }
+
+        function clearSearch() {
+            document.getElementById('desktop-search').value = '';
+            document.getElementById('mobile-search-input').value = '';
+            handleSearch('');
+        }
+
+        function handleSort(val) {
+            sortBy = val;
+            renderProductGrid();
+        }
+
+        function selectCardColor(productId, colorIndex) {
+            cardSelections[productId].colorIndex = colorIndex;
+            renderProductGrid();
+        }
+
+        function selectCardSize(productId, size) {
+            cardSelections[productId].size = size;
+            renderProductGrid();
+        }
+
+        function toggleWishlist(productId, btnEl) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            if (wishlistIds.has(productId)) {
+                wishlistIds.delete(productId);
+                showToast(`Removed "${product.name}" from wishlist`);
+            } else {
+                wishlistIds.add(productId);
+                showToast(`Saved "${product.name}" to your wishlist`);
+            }
+
+            const badge = document.getElementById('wishlist-badge');
+            badge.textContent = wishlistIds.size;
+            badge.classList.remove('animate-badge-bounce');
+            void badge.offsetWidth;
+            badge.classList.add('animate-badge-bounce');
+
+            renderProductGrid();
+            if (btnEl) {
+                const freshBtn = document.getElementById(`heart-btn-${productId}`);
+                if (freshBtn) freshBtn.classList.add('animate-heart-pop');
+            }
+        }
+
+        /* -------------------------------------------------------------------
+           7. QUICK VIEW & WISHLIST MODALS
+           ------------------------------------------------------------------- */
+        let qvProductId = null;
+        let qvColorIndex = 0;
+        let qvSize = 'M';
+
+        function openQuickView(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            qvProductId = product.id;
+            qvColorIndex = cardSelections[product.id].colorIndex;
+            qvSize = cardSelections[product.id].size;
+
+            document.getElementById('qv-badge').textContent = product.badge;
+            document.getElementById('qv-category').textContent = `${product.category} • ${product.collection}`;
+            document.getElementById('qv-title').textContent = product.name;
+            document.getElementById('qv-desc').textContent = product.desc;
+            document.getElementById('qv-fabric').textContent = product.fabric;
+            document.getElementById('qv-fit').textContent = product.fit;
+
+            document.getElementById('qv-price-row').innerHTML = product.originalPrice
+                ? `<span class="font-serif text-2xl font-bold text-roseberry-500">$${product.price}</span>
+                   <span class="text-sm text-plum-400 line-through">$${product.originalPrice}</span>`
+                : `<span class="font-serif text-2xl font-bold text-plum-950">$${product.price}</span>`;
+
+            renderQuickViewSelections();
+
+            document.getElementById('qv-add-btn').onclick = () => {
+                const chosenColor = product.colors[qvColorIndex];
+                addItemToBag(product.id, chosenColor.name, qvSize);
+                closeQuickView();
+                openBagDrawer();
+            };
+
+            document.getElementById('qv-wish-btn').onclick = () => {
+                toggleWishlist(product.id);
+                renderQuickViewSelections();
+            };
+
+            const modal = document.getElementById('quickview-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            lucide.createIcons();
+        }
+
+        function renderQuickViewSelections() {
+            const product = productsData.find(p => p.id === qvProductId);
+            if (!product) return;
+
+            const activeColor = product.colors[qvColorIndex];
+            const imgEl = document.getElementById('qv-img');
+            imgEl.src = product.primaryImg;
+            imgEl.alt = product.name;
+            imgEl.style.filter = activeColor.filter;
+            imgEl.onerror = () => handleImgFallback(imgEl, product.name);
+
+            document.getElementById('qv-selected-color-name').textContent = activeColor.name;
+
+            document.getElementById('qv-colors').innerHTML = product.colors.map((c, idx) => `
+                <button 
+                    onclick="qvColorIndex = ${idx}; renderQuickViewSelections();" 
+                    class="w-6 h-6 rounded-full border transition-transform ${
+                        qvColorIndex === idx ? 'ring-2 ring-offset-2 ring-lavender-500 scale-110' : 'border-plum-950/25'
+                    }"
+                    style="background-color: ${c.hex};"
+                    title="${c.name}"
+                ></button>
+            `).join('');
+
+            document.getElementById('qv-sizes').innerHTML = product.sizes.map(sz => `
+                <button 
+                    onclick="qvSize = '${sz}'; renderQuickViewSelections();" 
+                    class="py-2 rounded-xl text-xs font-bold border transition-all ${
+                        qvSize === sz 
+                            ? 'bg-plum-950 text-white border-plum-950' 
+                            : 'bg-blush-100 text-plum-950 border-blush-300 hover:border-lavender-500'
+                    }"
+                >${sz}</button>
+            `).join('');
+
+            const isWish = wishlistIds.has(product.id);
+            document.getElementById('qv-wish-btn').innerHTML = `<i data-lucide="heart" class="w-4 h-4 ${isWish ? 'text-roseberry-500 fill-current' : ''}"></i>`;
+            lucide.createIcons();
+        }
+
+        function closeQuickView() {
+            const modal = document.getElementById('quickview-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function openWishlistModal() {
+            const listEl = document.getElementById('wishlist-modal-list');
+            const items = productsData.filter(p => wishlistIds.has(p.id));
+
+            if (items.length === 0) {
+                listEl.innerHTML = `
+                    <div class="py-10 text-center space-y-2">
+                        <p class="font-serif text-xl text-plum-950">Your wishlist is currently empty</p>
+                        <p class="text-xs text-plum-600">Tap the heart icon on any piece to save it here.</p>
+                    </div>
+                `;
+            } else {
+                listEl.innerHTML = items.map(p => `
+                    <div class="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-blush-300">
+                        <img src="${p.primaryImg}" alt="${p.name}" class="w-16 h-20 rounded-xl object-cover flex-shrink-0" onerror="handleImgFallback(this, '${p.name}')">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-serif text-base font-semibold text-plum-950 truncate">${p.name}</h4>
+                            <p class="text-xs font-bold text-roseberry-500 mt-0.5">$${p.price}</p>
+                            <button onclick="addItemToBag('${p.id}', '${p.colors[0].name}', '${p.sizes[0]}'); closeWishlistModal(); openBagDrawer();" class="mt-2 px-3 py-1 rounded-full bg-plum-950 text-white text-[10px] font-bold uppercase tracking-wider">
+                                Move to Bag
+                            </button>
+                        </div>
+                        <button onclick="toggleWishlist('${p.id}'); openWishlistModal();" class="p-1.5 text-plum-400 hover:text-roseberry-500" aria-label="Remove">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            const modal = document.getElementById('wishlist-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            lucide.createIcons();
+        }
+
+        function closeWishlistModal() {
+            const modal = document.getElementById('wishlist-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        /* -------------------------------------------------------------------
+           8. SHOPPING BAG DRAWER, BUNDLES & PROMO CODE ('VERA20')
+           ------------------------------------------------------------------- */
+        function addToBagFromCard(productId, btnEl) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+            const sel = cardSelections[productId];
+            const color = product.colors[sel.colorIndex];
+            addItemToBag(productId, color.name, sel.size);
+
+            // Button Morph Animation: "+ Quick Add" -> "✓ Added to Bag"
+            if (btnEl) {
+                btnEl.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i><span>Added to Bag</span>`;
+                btnEl.classList.remove('bg-plum-950');
+                btnEl.classList.add('bg-lavender-600');
+                lucide.createIcons();
+                setTimeout(() => {
+                    btnEl.innerHTML = `<i data-lucide="plus" class="w-3.5 h-3.5"></i><span>Quick Add</span>`;
+                    btnEl.classList.add('bg-plum-950');
+                    btnEl.classList.remove('bg-lavender-600');
+                    lucide.createIcons();
+                }, 1300);
+            }
+        }
+
+        function addItemToBag(productId, colorName, size) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            const existing = bagItems.find(item => item.productId === productId && item.colorName === colorName && item.size === size);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                bagItems.push({ productId, colorName, size, qty: 1 });
+            }
+
+            renderBag();
+
+            const badge = document.getElementById('bag-badge');
+            badge.classList.remove('animate-badge-bounce');
+            void badge.offsetWidth;
+            badge.classList.add('animate-badge-bounce');
+
+            showToast(`Added ${product.name} (${size}) to your bag`);
+        }
+
+        function updateBagQty(index, delta) {
+            if (!bagItems[index]) return;
+            bagItems[index].qty += delta;
+            if (bagItems[index].qty <= 0) bagItems.splice(index, 1);
+            renderBag();
+        }
+
+        function removeBagItem(index) {
+            bagItems.splice(index, 1);
+            renderBag();
+        }
+
+        function applyBagPromo(event) {
+            event.preventDefault();
+            const input = document.getElementById('bag-promo-input');
+            const code = input.value.trim().toUpperCase();
+            if (code === 'VERA20' || code === 'SALON15') {
+                appliedPromo = code;
+                input.value = '';
+                renderBag();
+                showToast(`Privilege code ${code} applied!`);
+            } else {
+                showToast('Try VERA20 for 20% off your order.');
+            }
+        }
+
+        function removePromoCode() {
+            appliedPromo = null;
+            renderBag();
+            showToast('Promo code removed');
+        }
+
+        function renderBag() {
+            const container = document.getElementById('bag-items-container');
+            const totalQty = bagItems.reduce((sum, item) => sum + item.qty, 0);
+
+            document.getElementById('bag-badge').textContent = totalQty;
+            document.getElementById('drawer-count-label').textContent = `(${totalQty} ${totalQty === 1 ? 'item' : 'items'})`;
+
+            if (bagItems.length === 0) {
+                container.innerHTML = `
+                    <div class="py-16 text-center space-y-3">
+                        <i data-lucide="shopping-bag" class="w-10 h-10 text-plum-400 mx-auto"></i>
+                        <p class="font-serif text-2xl text-plum-950">Your shopping bag is empty</p>
+                        <p class="text-xs text-plum-600">Explore the Blush & Lavender collection to add garments.</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = bagItems.map((item, idx) => {
+                    const product = productsData.find(p => p.id === item.productId);
+                    if (!product) return '';
+                    return `
+                    <div class="flex gap-4 p-3.5 rounded-2xl bg-white border border-blush-300 shadow-2xs">
+                        <img src="${product.primaryImg}" alt="${product.name}" class="w-20 h-24 rounded-xl object-cover flex-shrink-0 bg-blush-100" onerror="handleImgFallback(this, '${product.name}')">
+                        <div class="flex-1 min-w-0 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-start justify-between gap-2">
+                                    <h4 class="font-serif text-base font-semibold text-plum-950 leading-tight">${product.name}</h4>
+                                    <button onclick="removeBagItem(${idx})" class="text-plum-400 hover:text-roseberry-500" aria-label="Remove item">
+                                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                    </button>
+                                </div>
+                                <p class="text-[11px] text-plum-600 mt-0.5">${item.colorName} • Size ${item.size}</p>
+                            </div>
+
+                            <div class="flex items-center justify-between pt-2">
+                                <div class="inline-flex items-center border border-blush-300 rounded-full bg-blush-50">
+                                    <button onclick="updateBagQty(${idx}, -1)" class="px-2.5 py-0.5 text-xs font-bold hover:text-roseberry-500">-</button>
+                                    <span class="px-2 text-xs font-bold text-plum-950">${item.qty}</span>
+                                    <button onclick="updateBagQty(${idx}, 1)" class="px-2.5 py-0.5 text-xs font-bold hover:text-roseberry-500">+</button>
+                                </div>
+                                <span class="text-sm font-bold text-plum-950">$${(product.price * item.qty).toFixed(2)}</span>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                }).join('');
+            }
+
+            let subtotal = 0;
+            let knitwearSubtotal = 0;
+            let knitwearCount = 0;
+
+            bagItems.forEach(item => {
+                const product = productsData.find(p => p.id === item.productId);
+                if (!product) return;
+                const lineTotal = product.price * item.qty;
+                subtotal += lineTotal;
+                if (product.category === 'Knitwear') {
+                    knitwearSubtotal += lineTotal;
+                    knitwearCount += item.qty;
+                }
+            });
+
+            const bundleDiscount = knitwearCount >= 2 ? knitwearSubtotal * 0.25 : 0;
+            const afterBundle = subtotal - bundleDiscount;
+            const promoRate = appliedPromo === 'VERA20' ? 0.20 : (appliedPromo === 'SALON15' ? 0.15 : 0);
+            const promoDiscount = afterBundle * promoRate;
+            const finalTotal = Math.max(0, afterBundle - promoDiscount);
+
+            // Complimentary Shipping Progress Bar ($250 threshold)
+            const freeShipThreshold = 250;
+            const shipPct = Math.min(100, (finalTotal / freeShipThreshold) * 100);
+            document.getElementById('shipping-progress-bar').style.width = `${shipPct}%`;
+
+            if (finalTotal >= freeShipThreshold || finalTotal === 0) {
+                document.getElementById('shipping-status-text').innerHTML = `You have unlocked <strong>Complimentary Express Courier</strong>.`;
+                document.getElementById('bag-shipping-cost').textContent = 'Complimentary';
+            } else {
+                const remaining = (freeShipThreshold - finalTotal).toFixed(2);
+                document.getElementById('shipping-status-text').innerHTML = `Add <strong>$${remaining}</strong> more for Complimentary Express Courier.`;
+                document.getElementById('bag-shipping-cost').textContent = '$25.00';
+            }
+
+            document.getElementById('bag-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+
+            const bundleRow = document.getElementById('bag-bundle-row');
+            if (bundleDiscount > 0) {
+                bundleRow.classList.remove('hidden');
+                bundleRow.classList.add('flex');
+                document.getElementById('bag-bundle-amount').textContent = `-$${bundleDiscount.toFixed(2)}`;
+            } else {
+                bundleRow.classList.add('hidden');
+                bundleRow.classList.remove('flex');
+            }
+
+            const promoBanner = document.getElementById('applied-promo-banner');
+            const discountRow = document.getElementById('bag-discount-row');
+            if (promoDiscount > 0) {
+                promoBanner.classList.remove('hidden');
+                promoBanner.classList.add('flex');
+                discountRow.classList.remove('hidden');
+                discountRow.classList.add('flex');
+                document.getElementById('bag-discount-amount').textContent = `-$${promoDiscount.toFixed(2)}`;
+            } else {
+                promoBanner.classList.add('hidden');
+                promoBanner.classList.remove('flex');
+                discountRow.classList.add('hidden');
+                discountRow.classList.remove('flex');
+            }
+
+            const shippingFee = (finalTotal > 0 && finalTotal < freeShipThreshold) ? 25 : 0;
+            document.getElementById('bag-final-total').textContent = `$${(finalTotal + shippingFee).toFixed(2)}`;
+            lucide.createIcons();
+        }
+
+        function openBagDrawer() {
+            document.getElementById('bag-backdrop').classList.remove('hidden');
+            document.getElementById('bag-drawer').classList.remove('translate-x-full');
+        }
+
+        function closeBagDrawer() {
+            document.getElementById('bag-backdrop').classList.add('hidden');
+            document.getElementById('bag-drawer').classList.add('translate-x-full');
+        }
+
+        function handleCheckout() {
+            if (bagItems.length === 0) {
+                showToast('Add a garment to your bag before checking out.');
+                return;
+            }
+            const refNum = Math.floor(10000 + Math.random() * 90000);
+            document.getElementById('order-ref-text').textContent = `Reference #AV-${refNum}`;
+            bagItems = [];
+            appliedPromo = null;
+            renderBag();
+            closeBagDrawer();
+
+            const modal = document.getElementById('checkout-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            lucide.createIcons();
+        }
+
+        function closeCheckoutModal() {
+            const modal = document.getElementById('checkout-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        /* -------------------------------------------------------------------
+           9. PROMO COPY, VIP PERK SIGNUP & NAVIGATION UTILITIES
+           ------------------------------------------------------------------- */
+        function copyPromoCode(code, btnEl) {
+            const tempInput = document.createElement('input');
+            tempInput.value = code;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            if (btnEl) {
+                const origHTML = btnEl.innerHTML;
+                btnEl.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i><span>COPIED ${code}</span>`;
+                lucide.createIcons();
+                setTimeout(() => {
+                    btnEl.innerHTML = origHTML;
+                    lucide.createIcons();
+                }, 1800);
+            }
+            showToast(`Copied "${code}" — apply it in your shopping bag!`);
+        }
+
+        function handleVipSignup(event) {
+            event.preventDefault();
+            const input = document.getElementById('vip-email-input');
+            if (!input.value.trim()) return;
+            input.value = '';
+            const perkCard = document.getElementById('vip-perk-card');
+            perkCard.classList.remove('hidden');
+            lucide.createIcons();
+            showToast('Welcome to ATELIER VERA! Your 15% perk is unlocked.');
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        function toggleMobileSearch() {
+            const bar = document.getElementById('mobile-search-bar');
+            bar.classList.toggle('hidden');
+            if (!bar.classList.contains('hidden')) {
+                document.getElementById('mobile-search-input').focus();
+            }
+        }
+
+        let toastTimer;
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 3000);
+        }
+
+        /* -------------------------------------------------------------------
+           10. INITIALIZATION
+           ------------------------------------------------------------------- */
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('wishlist-badge').textContent = wishlistIds.size;
+            renderCategoryPills();
+            renderProductGrid();
+            renderBag();
+            lucide.createIcons();
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeQuickView();
+                closeWishlistModal();
+                closeBagDrawer();
+                closeCheckoutModal();
+                closeMobileMenu();
+            }
+        });
+    </script>
+</body>
+</html>
